@@ -46,7 +46,7 @@
 
 extern crate log as logcrate;
 #[macro_use]
-extern crate diesell;
+extern crate diesel2;
 
 use std::path::PathBuf;
 
