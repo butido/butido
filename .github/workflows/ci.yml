@@ -104,7 +104,6 @@ jobs:
   # Hence, we have some kind of dummy here that bors can listen on
   ci-success:
     name: CI
-    if: ${{ success() }}
     runs-on: ubuntu-latest
     needs:
       - cargo-deny
