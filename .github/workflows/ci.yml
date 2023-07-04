@@ -104,7 +104,7 @@ jobs:
   # Hence, we have some kind of dummy here that bors can listen on
   ci-success:
     name: CI
-    if: ${{ success() }}
+    if: ${{ always() }}
     runs-on: ubuntu-latest
     needs:
       - cargo-deny
@@ -112,5 +112,10 @@ jobs:
       - test
       - lint
     steps:
-      - name: CI succeeded
-        run: exit 0
+      - run: exit 1
+        if: >-
+          ${{
+            contains(needs.*.result, 'failure') ||
+            contains(needs.*.result, 'cancelled') ||
+            contains(needs.*.result, 'skipped')
+          }}
